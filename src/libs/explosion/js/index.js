@@ -47,3 +47,20 @@ function fadeIn(element, callback) {
     }
   }
 }
+
+function fadeOut(element, callback) {
+  animation();
+
+  function animation() {
+    let opacity = Number(element.style.opacity);
+    if (opacity > 0) {
+      opacity = opacity - 0.04;
+      element.style.opacity = opacity;
+      window.requestAnimationFrame(animation);
+      return;
+    }
+    if (callback) {
+      callback()
+    }
+  }
+}
