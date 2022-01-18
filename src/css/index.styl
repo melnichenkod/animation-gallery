@@ -2,18 +2,21 @@ body,
 html {
     font: 16px/1.4 Georgia, serif;
 }
+
 .page {
     min-width: 1000px;
     padding: 2.5rem 2rem;
 }
+
 .title {
     font-size: 3rem;
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 0.02em;
     text-align: center;
-    margin-bottom: 0.4em;
+    margin-bottom: 0.7em;
 }
+
 .gallery {
     &Item {
         display: inline-block;
@@ -24,6 +27,7 @@ html {
         vertical-align: top;
     }
 }
+
 .card {
     display: block;
     position: absolute;
@@ -31,7 +35,7 @@ html {
     left: 0;
     bottom: 0;
     right: 0;
-
+    overflow: hidden;
     color: white;
     &:hover,
     &:visited {
@@ -50,6 +54,8 @@ html {
     &Image {
         object-fit: cover;
         z-index: 1;
+        transform: scale(1);
+        transition: transform 3s;
     }
     &Hover {
         z-index: 2;
@@ -66,6 +72,7 @@ html {
         flex-direction: column;
         z-index: 3;
         opacity: 0;
+        transition: all 0.3s;
     }
     &Title {
         font-size: 1.2rem;
@@ -79,6 +86,9 @@ html {
         .cardHover,
         .cardContent {
             opacity: 1;
+        }
+        .cardImage {
+            transform: scale(1.2);
         }
     }
 }
