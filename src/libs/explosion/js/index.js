@@ -29,4 +29,21 @@ const explosionPrevHiddenImageClassName = 'explosionImage_PrevHidden';
 const explosionPrevShowingImageClassName = 'explosionImage_PrevShowing';
 const explosionActiveImageClassName = 'explosionImage_Active';
 const explosionNextShowingImageClassName = 'explosionImage_NextShowing';
-const explosionNextHiddenImageClassName = 'explosionImage_NextHidden'
+const explosionNextHiddenImageClassName = 'explosionImage_NextHidden';
+
+function fadeIn(element, callback) {
+  animation();
+
+  function animation() {
+    let opacity = Number(element.style.opacity);
+    if (opacity < 1) {
+      opacity = opacity + 0.1;
+      element.style.opacity = opacity;
+      window.requestAnimationFrame(animation);
+      return;
+    }
+    if (callback) {
+      callback()
+    }
+  }
+}
