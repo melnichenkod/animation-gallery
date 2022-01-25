@@ -1,6 +1,5 @@
 const defaultOptions = {
-  linkClass: '.cardLink',
-  linkImageClass: '.cardImage'
+  linkClass: '.card',
 };
 
 const explosionClassName = 'explosion';
@@ -30,6 +29,23 @@ const explosionPrevShowingImageClassName = 'explosionImage_PrevShowing';
 const explosionActiveImageClassName = 'explosionImage_Active';
 const explosionNextShowingImageClassName = 'explosionImage_NextShowing';
 const explosionNextHiddenImageClassName = 'explosionImage_NextHidden';
+
+class ExplositionGallery {
+  constructor(elementNode, options) {
+    this.options = {
+      ...defaultOptions,
+      ...options
+    };
+    this.containerNode = elementNode;
+    this.linkNodes = elementNode.querySelectorAll(this.options.linkClass);
+    this.minWidth = 1023;
+    this.minHeight = 600;
+    this.padding = 2 * 16;
+    this.showingCount = 4;
+    this.currentIndex = 0;
+    this.size = this.linkNodes.length;
+  }
+}
 
 function fadeIn(element, callback) {
   animation();
