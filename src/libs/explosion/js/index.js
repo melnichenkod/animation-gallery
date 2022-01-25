@@ -44,6 +44,36 @@ class ExplositionGallery {
     this.showingCount = 4;
     this.currentIndex = 0;
     this.size = this.linkNodes.length;
+
+    this.initModal();
+  }
+  initModal() {
+    this.modalContainerNode = document.createElement("div");
+    this.modalContainerNode.className = explosionClassName;
+
+    this.modalContainerNode.innerHTML = `
+      <div class="${explosionSummaryClassName}">
+        <div class="${explosionSummaryContentClassName}">
+          <h2 class="${explosionTitleClassName}"></h2>
+          <p class="${explosionDescriptionClassName}"></p>
+        </div>
+        <div class="${explosionControlsClassName}">
+          <button class="${explosionCloseClassName}"></buttnon>
+          <div class="${explosionNavsClassName}">
+            <button class="${explosionNavClassName} 
+              ${explosionNavPrevClassName}">
+            </button>
+            <div class="${explosionCounterClassName}">
+              1/${this.size}
+            </div>
+            <button class="${explosionNavClassName} 
+              ${explosionNavNextClassName}"
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(this.modalContainerNode)
   }
 }
 
