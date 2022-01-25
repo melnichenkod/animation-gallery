@@ -71,6 +71,10 @@ class ExplositionGallery {
             </button>
           </div>
         </div>
+        <div class="${explosionImagesClassName}">
+          ${Array.from(this.linkNodes).map((linkNode) => `
+            <img src="${linkNode.getAttribute('href')}" alt="${linkNode.dataset.title}" class="${explosionImageClassName}" data-title="${linkNode.dataset.title}" data-description="${linkNode.dataset.description}" />
+          `).join('')}
       </div>
     `;
     document.body.appendChild(this.modalContainerNode)
