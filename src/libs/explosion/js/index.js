@@ -16,7 +16,7 @@ const explosionDescriptionClassName = 'explosionDescription';
 const explosionImageClassName = 'explosionImage';
 
 const explosionCloseClassName = 'explosionClose';
-const explosionNavsClassName = 'explosionsNavs';
+const explosionNavsClassName = 'explosionNavs';
 
 const explosionNavClassName = 'explosionNav';
 const explosionNavPrevClassName = 'explosionNavPrev';
@@ -59,17 +59,15 @@ class ExplositionGallery {
           <p class="${explosionDescriptionClassName}"></p>
         </div>
         <div class="${explosionControlsClassName}">
-          <button class="${explosionCloseClassName}"></buttnon>
+          <button class="${explosionCloseClassName}"></button>
           <div class="${explosionNavsClassName}">
             <button class="${explosionNavClassName} 
-              ${explosionNavPrevClassName}">
-            </button>
+              ${explosionNavPrevClassName}"></button>
             <div class="${explosionCounterClassName}">
               1/${this.size}
             </div>
             <button class="${explosionNavClassName} 
-              ${explosionNavNextClassName}"
-            </button>
+              ${explosionNavNextClassName}"></button>
           </div>
         </div>
         <div class="${explosionImagesClassName}">
