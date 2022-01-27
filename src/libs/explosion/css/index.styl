@@ -1,3 +1,20 @@
 .explosion {
   display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: white;
+  min-width: 1023px;
+  min-height: 600px;
+  z-index: 999;
+  color: black;
+  opacity: 0;
+  &_Opened {
+    display: block;
+  }
+  &_Opening {
+    display: block;
+  }
 }

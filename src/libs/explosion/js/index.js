@@ -92,6 +92,11 @@ class ExplositionGallery {
     }
     this.currentIndex = Array.from(this.linkNodes).findIndex((itemNode) => linkNode === itemNode);
     //console.log(this.currentIndex);
+    this.modalContainerNode.classList.add(explosionOpeningClassName);
+    fadeIn(this.modalContainerNode, () => {
+      this.modalContainerNode.classList.remove(explosionOpeningClassName);
+      this.modalContainerNode.classList.add(explosionOpenedClassName);
+    })
   }
 }
 
