@@ -53,5 +53,30 @@
     background-position: center;
     cursor: pointer;
     text-align: center;
+    opacity: 1;
+    transition: background 0.3s, opacity 0.3s;
+
+    &:hover {
+      background-color: black;
+    }
+
+    &:disabled {
+      pointer-events: none;
+      opacity: 0.3;
+    }
+
+    &Prev {
+      background-image: url('/libs/explosion/images/arrow-up.svg');
+      &:hover {
+        background-image: url('/libs/explosion/images/arrow-up-white.svg');
+      }
+    }
+
+    &Next {
+      background-image: url('/libs/explosion/images/arrow-down.svg');
+      &:hover {
+        background-image: url('/libs/explosion/images/arrow-down-white.svg');
+      }
+    }
     }
 }
