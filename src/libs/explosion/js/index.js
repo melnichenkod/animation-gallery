@@ -46,6 +46,7 @@ class ExplositionGallery {
     this.size = this.linkNodes.length;
 
     this.initModal();
+    this.events();
   }
   initModal() {
     this.modalContainerNode = document.createElement("div");
@@ -78,6 +79,19 @@ class ExplositionGallery {
       </div>
     `;
     document.body.appendChild(this.modalContainerNode)
+  }
+
+  events() {
+     this.containerNode.addEventListener('click', this.activateGallery)
+  }
+  activateGallery = (event) => {
+    event.preventDefault();
+    const linkNode = event.target.closest('a');
+    if (!linkNode) {
+      return;
+    }
+    this.currentIndex = Array.from(this.linkNodes).findIndex((itemNode) => linkNode === itemNode);
+    //console.log(this.currentIndex);
   }
 }
 
