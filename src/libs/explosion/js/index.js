@@ -76,7 +76,9 @@ class ExplositionGallery {
           `).join('')}
       </div>
     `;
-    document.body.appendChild(this.modalContainerNode)
+    document.body.appendChild(this.modalContainerNode);
+
+    this.explosionImageNodes = this.modalContainerNode.querySelectorAll(`.${explosionImageClassName}`)
   }
 
   events() {
@@ -94,7 +96,21 @@ class ExplositionGallery {
     fadeIn(this.modalContainerNode, () => {
       this.modalContainerNode.classList.remove(explosionOpeningClassName);
       this.modalContainerNode.classList.add(explosionOpenedClassName);
-    })
+    });
+    this.setInitSizeToImage();
+    this.setInitPositionsToImages();
+  }
+  setInitSizeToImage() {
+    //console.log(this.explosionImageNodes);
+    this.linkNodes.forEach((linkNode, index) => {
+      const data = linkNode.getBoundingClientRect();
+      //console.log(data);
+      this.explosionImageNodes[index].style.width = data.width + 'px';
+      this.explosionImageNodes[index].style.height = data.height + 'px';
+    });
+  }
+  setInitPositionsToImages(){
+
   }
 }
 
