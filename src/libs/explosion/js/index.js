@@ -110,7 +110,17 @@ class ExplositionGallery {
     });
   }
   setInitPositionsToImages(){
-
+    this.linkNodes.forEach((linkNode, index) => {
+      const data = linkNode.getBoundingClientRect();
+      this.setPositionStyles(
+        this.explosionImageNodes[index],
+        data.left,
+        data.top,
+      );
+    });
+  }
+  setPositionStyles(element, x, y) {
+    element.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0)`;
   }
 }
 
