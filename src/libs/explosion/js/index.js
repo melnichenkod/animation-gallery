@@ -87,7 +87,12 @@ class ExplositionGallery {
   activateGallery = (event) => {
     event.preventDefault();
     const linkNode = event.target.closest('a');
-    if (!linkNode) {
+    if (
+        !linkNode 
+        || 
+        this.modalContainerNode.classList.contains(explosionOpenedClassName) 
+        || this.modalContainerNode.classList.contains(explosionOpeningClassName)
+    ) {
       return;
     }
     this.currentIndex = Array.from(this.linkNodes).findIndex((itemNode) => linkNode === itemNode);
@@ -96,6 +101,7 @@ class ExplositionGallery {
     fadeIn(this.modalContainerNode, () => {
       this.modalContainerNode.classList.remove(explosionOpeningClassName);
       this.modalContainerNode.classList.add(explosionOpenedClassName);
+      this.switchChange();
     });
     this.setInitSizeToImage();
     this.setInitPositionsToImages();
@@ -121,6 +127,38 @@ class ExplositionGallery {
   }
   setPositionStyles(element, x, y) {
     element.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0)`;
+  }
+
+  switchChange() {
+    this.setCurrentState();
+  }
+
+  setCurrentState() {
+    this.explosionPrevHiddenImageNodes = [];
+    this.explosionPrevShowingImageNodes = [];
+    this.explosionActiveImageNodes = [];
+    this.explosionNextShowingImageNodes = [];
+    this.explosionNextHiddenImageNodes = [];
+    
+    this.explosionImageNodes.forEach((imageNode, index) => {
+      if(index + this.showingCount < this.currentIndex) {
+        this.explosionPrevHiddenImageNodes.unshift(imageNode);
+      } else if (index < this.currentIndex) {
+        this.explosionPrevShowingImageNodes.unshift(imageNode);
+      } else if (index === this.currentIndex) {
+        this.explosionActiveImageNodes.push(imageNode);
+      } else if (index <= this.currentIndex + this.showingCount) {
+        this.explosionNextShowingImageNodes.push(imageNode);
+      } else {
+        this.explosionNextHiddenImageNodes.push(imageNode);
+      }
+    });
+
+    console.log(this.explosionPrevHiddenImageNodes)
+    console.log(this.explosionPrevShowingImageNodes)
+    console.log(this.explosionActiveImageNodes)
+    console.log(this.explosionNextShowingImageNodes)
+    console.log(this.explosionNextHiddenImageNodes)
   }
 }
 
