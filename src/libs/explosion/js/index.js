@@ -172,7 +172,7 @@ class ExplositionGallery {
     this.explosionPrevHiddenImageNodes.forEach((node) => (
       this.setImageStyles(node, {
         top: -modalHeight,
-        left: 0.31 * modalWidth,
+        left: 0.29 * modalWidth,
         opacity: 0.1,
         zIndex: 1,
         scale: 0.4,
@@ -181,11 +181,87 @@ class ExplositionGallery {
 
     this.setImageStyles(this.explosionPrevShowingImageNodes[0], {
       top: (modalHeight - imageHeight),
-      left: 0.32 * modalWidth,
+      left: 0.25 * modalWidth,
       opacity: 0.4,
       zIndex: 4,
       scale: 0.75,
-    })
+    });
+
+    this.setImageStyles(this.explosionPrevShowingImageNodes[1], {
+      top: 0.35 * modalHeight,
+      left: 0.06 * modalWidth,
+      opacity: 0.3,
+      zIndex: 3,
+      scale: 0.6,
+    });
+
+    this.setImageStyles(this.explosionPrevShowingImageNodes[2], {
+      top: 0,
+      left: 0.15 * modalWidth,
+      opacity: 0.2,
+      zIndex: 2,
+      scale: 0.5,
+    });
+
+    this.setImageStyles(this.explosionPrevShowingImageNodes[3], {
+      top: -0.3 * imageHeight,
+      left: 0.29 * modalWidth,
+      opacity: 0.1,
+      zIndex: 1,
+      scale: 0.4,
+    });
+
+    this.explosionActiveImageNodes.forEach((node) => (
+      this.setImageStyles(node, {
+        top: (modalHeight - imageHeight) / 2,
+        left: (modalWidth - imageWidth) / 2,
+        opacity: 1,
+        zIndex: 5,
+        scale: 1.2,
+      })
+    ));
+
+    this.setImageStyles(this.explosionNextShowingImageNodes[0], {
+      top: 0,
+      left: 0.52 * modalWidth,
+      opacity: 0.4,
+      zIndex: 4,
+      scale: 0.75,
+    });
+
+    this.setImageStyles(this.explosionNextShowingImageNodes[1], {
+      top: 0.12 * modalHeight,
+      left: 0.72 * modalWidth,
+      opacity: 0.3,
+      zIndex: 3,
+      scale: 0.6,
+    });
+
+    this.setImageStyles(this.explosionNextShowingImageNodes[2], {
+      top: 0.47 * modalHeight,
+      left: 0.67 * modalWidth,
+      opacity: 0.2,
+      zIndex: 2,
+      scale: 0.5,
+    });
+
+    this.setImageStyles(this.explosionNextShowingImageNodes[3], {
+      top: 0.67 * modalHeight,
+      left: 0.53 * modalWidth,
+      opacity: 0.1,
+      zIndex: 1,
+      scale: 0.4,
+    });
+
+    this.explosionNextHiddenImageNodes.forEach((node) => (
+      this.setImageStyles(node, {
+        top: modalHeight,
+        left: 0.53 * modalWidth,
+        opacity: 0.1,
+        zIndex: 1,
+        scale: 0.4,
+      })
+    ));
   }
 
   setImageStyles(element, {top, left, opacity, zIndex, scale}){
