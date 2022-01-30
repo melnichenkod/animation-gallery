@@ -79,7 +79,9 @@ class ExplositionGallery {
     document.body.appendChild(this.modalContainerNode);
 
     this.explosionImageNodes = this.modalContainerNode.querySelectorAll(`.${explosionImageClassName}`);
-    this.explosionControlsNode = this.modalContainerNode. querySelector(`.${explosionControlsClassName}`)
+    this.explosionControlsNode = this.modalContainerNode. querySelector(`.${explosionControlsClassName}`);
+    this.explosionNavPrevNode = this.modalContainerNode.querySelector(`.${explosionNavPrevClassName}`);
+    this.explosionNavNextNode = this.modalContainerNode.querySelector(`.${explosionNavNextClassName}`);
   }
 
   events() {
@@ -132,6 +134,22 @@ class ExplositionGallery {
 
   switchChange() {
     this.setCurrentState();
+    this.switchDisabledNav();
+  }
+
+  switchDisabledNav() {
+    if (this.currentIndex === 0 && !this.explosionNavPrevNode.disabled) {
+      this.explosionNavPrevNode.disabled = true;
+    }
+    if (this.currentIndex > 0 && this.explosionNavPrevNode.disabled) {
+      this.explosionNavPrevNode.disabled = false;
+    }
+    if(this.currentIndex === this.size - 1 && !this.explosionNavNextNode.disabled) {
+      this.explosionNavNextNode.disabled = true;
+    }
+    if(this.currentIndex < this.size - 1 && this.explosionNavNextNode.disabled) {
+      this.explosionNavNextNode.disabled = false;
+    }
   }
 
   setCurrentState() {
