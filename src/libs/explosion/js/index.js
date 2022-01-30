@@ -78,7 +78,8 @@ class ExplositionGallery {
     `;
     document.body.appendChild(this.modalContainerNode);
 
-    this.explosionImageNodes = this.modalContainerNode.querySelectorAll(`.${explosionImageClassName}`)
+    this.explosionImageNodes = this.modalContainerNode.querySelectorAll(`.${explosionImageClassName}`);
+    this.explosionControlsNode = this.modalContainerNode. querySelector(`.${explosionControlsClassName}`)
   }
 
   events() {
@@ -262,6 +263,14 @@ class ExplositionGallery {
         scale: 0.4,
       })
     ));
+
+this.setControlsStyles(
+  this.explosionControlsNode,
+  {
+    marginTop: (modalHeight - imageHeight * 1.2 + this.padding) / 2,
+    height: imageHeight * 1.2
+  }
+)
   }
 
   setImageStyles(element, {top, left, opacity, zIndex, scale}){
@@ -271,6 +280,11 @@ class ExplositionGallery {
     element.style.opacity = opacity;
     element.style.transform = `translate3d(${left.toFixed(1)}px, ${top.toFixed(1)}px, 0) scale(${scale})`;
     element.style.zIndex = zIndex;
+  }
+
+  setControlsStyles(element, {marginTop, height}) {
+    element.style.marginTop = marginTop + 'px';
+    element.style.height = height + 'px';
   }
 }
 
