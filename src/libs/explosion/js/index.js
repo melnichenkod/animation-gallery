@@ -58,6 +58,7 @@ class ExplositionGallery {
           <h2 class="${explosionTitleClassName}"></h2>
           <p class="${explosionDescriptionClassName}"></p>
         </div>
+      </div>
         <div class="${explosionControlsClassName}">
           <button class="${explosionCloseClassName}"></button>
           <div class="${explosionNavsClassName}">
@@ -78,6 +79,7 @@ class ExplositionGallery {
     `;
     document.body.appendChild(this.modalContainerNode);
 
+    this.explosionSummaryNode = this.modalContainerNode.querySelector(`.${explosionSummaryClassName}`);
     this.explosionImageNodes = this.modalContainerNode.querySelectorAll(`.${explosionImageClassName}`);
     this.explosionControlsNode = this.modalContainerNode. querySelector(`.${explosionControlsClassName}`);
     this.explosionNavPrevNode = this.modalContainerNode.querySelector(`.${explosionNavPrevClassName}`);
@@ -296,13 +298,16 @@ class ExplositionGallery {
       })
     ));
 
-this.setControlsStyles(
-  this.explosionControlsNode,
-  {
-    marginTop: (modalHeight - imageHeight * 1.2 + this.padding) / 2,
-    height: imageHeight * 1.2
-  }
-)
+    this.setControlsStyles(
+      this.explosionControlsNode,
+      {
+        marginTop: (modalHeight - imageHeight * 1.2 + this.padding) / 2,
+        height: imageHeight * 1.2
+      }
+    );
+
+    this.explosionSummaryNode.style.width = '50%';
+
   }
 
   setImageStyles(element, {top, left, opacity, zIndex, scale}){
