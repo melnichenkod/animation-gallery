@@ -82,6 +82,7 @@ class ExplositionGallery {
     this.explosionControlsNode = this.modalContainerNode. querySelector(`.${explosionControlsClassName}`);
     this.explosionNavPrevNode = this.modalContainerNode.querySelector(`.${explosionNavPrevClassName}`);
     this.explosionNavNextNode = this.modalContainerNode.querySelector(`.${explosionNavNextClassName}`);
+    this.explosionCounterNode = this.modalContainerNode.querySelector(`.${explosionCounterClassName}`);
   }
 
   events() {
@@ -135,6 +136,7 @@ class ExplositionGallery {
   switchChange() {
     this.setCurrentState();
     this.switchDisabledNav();
+    this.changeCounter();
   }
 
   switchDisabledNav() {
@@ -150,6 +152,10 @@ class ExplositionGallery {
     if(this.currentIndex < this.size - 1 && this.explosionNavNextNode.disabled) {
       this.explosionNavNextNode.disabled = false;
     }
+  }
+
+  changeCounter() {
+    this.explosionCounterNode.innerText = `${this.currentIndex + 1}/${this.size}`
   }
 
   setCurrentState() {
