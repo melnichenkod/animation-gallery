@@ -83,6 +83,8 @@ class ExplositionGallery {
     this.explosionNavPrevNode = this.modalContainerNode.querySelector(`.${explosionNavPrevClassName}`);
     this.explosionNavNextNode = this.modalContainerNode.querySelector(`.${explosionNavNextClassName}`);
     this.explosionCounterNode = this.modalContainerNode.querySelector(`.${explosionCounterClassName}`);
+    this.explosionTitleNode = this.modalContainerNode.querySelector(`.${explosionTitleClassName}`);
+    this.explosionDescriptionNode = this.modalContainerNode.querySelector(`.${explosionDescriptionClassName}`);
   }
 
   events() {
@@ -137,6 +139,12 @@ class ExplositionGallery {
     this.setCurrentState();
     this.switchDisabledNav();
     this.changeCounter();
+    this.changeSummary();
+  }
+  changeSummary() {
+    const content = this.explosionImageNodes[this.currentIndex].dataset;
+    this.explosionTitleNode.innerText = content.title;
+    this.explosionDescriptionNode.innerText = content.description;
   }
 
   switchDisabledNav() {
