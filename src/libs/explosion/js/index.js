@@ -88,11 +88,12 @@ class ExplositionGallery {
     this.explosionTitleNode = this.modalContainerNode.querySelector(`.${explosionTitleClassName}`);
     this.explosionDescriptionNode = this.modalContainerNode.querySelector(`.${explosionDescriptionClassName}`);
     this.explosionNavsNode = this.modalContainerNode.querySelector(`.${explosionNavsClassName}`);
+    this.explosionSummaryContentNode = this.modalContainerNode.querySelector(`.${explosionSummaryContentClassName}`)
   }
 
   events() {
-     this.containerNode.addEventListener('click', this.activateGallery);
-     this.explosionNavsNode.addEventListener('click', this.switchImage);
+    this.containerNode.addEventListener('click', this.activateGallery);
+    this.explosionNavsNode.addEventListener('click', this.switchImage);
   }
 
   switchImage = (event) => {
@@ -108,7 +109,7 @@ class ExplositionGallery {
     if (buttonNode.classList.contains(explosionNavNextClassName) && this.currentIndex < this.size - 1) {
       this.currentIndex += 1;
     }
-    this.switchChange();
+    this.switchChange(true);
   }
   activateGallery = (event) => {
     event.preventDefault();
@@ -155,16 +156,28 @@ class ExplositionGallery {
     element.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0)`;
   }
 
-  switchChange() {
+  switchChange(hasSummaryAnimation) {
     this.setCurrentState();
     this.switchDisabledNav();
     this.changeCounter();
-    this.changeSummary();
+    this.changeSummary(hasSummaryAnimation);
   }
-  changeSummary() {
+  changeSummary(hasAnimation) {
     const content = this.explosionImageNodes[this.currentIndex].dataset;
-    this.explosionTitleNode.innerText = content.title;
-    this.explosionDescriptionNode.innerText = content.description;
+    //this.explosionTitleNode.innerText = content.title;
+    //this.explosionDescriptionNode.innerText = content.description;
+    if (hasAnimation) {
+      this.explosionSummaryContentNode.style.opacity = 0;
+      setTimeout(() => {
+        this.explosionTitleNode.innerText = content.title;
+        this.explosionDescriptionNode.innerText = content.description;
+
+        this.explosionSummaryContentNode.style.opacity = 1;
+      }, 300)
+    } else {
+      this.explosionTitleNode.innerText = content.title;
+      this.explosionDescriptionNode.innerText = content.description;
+    }
   }
 
   switchDisabledNav() {
