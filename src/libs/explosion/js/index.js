@@ -87,10 +87,28 @@ class ExplositionGallery {
     this.explosionCounterNode = this.modalContainerNode.querySelector(`.${explosionCounterClassName}`);
     this.explosionTitleNode = this.modalContainerNode.querySelector(`.${explosionTitleClassName}`);
     this.explosionDescriptionNode = this.modalContainerNode.querySelector(`.${explosionDescriptionClassName}`);
+    this.explosionNavsNode = this.modalContainerNode.querySelector(`.${explosionNavsClassName}`);
   }
 
   events() {
-     this.containerNode.addEventListener('click', this.activateGallery)
+     this.containerNode.addEventListener('click', this.activateGallery);
+     this.explosionNavsNode.addEventListener('click', this.switchImage);
+  }
+
+  switchImage = (event) => {
+    event.preventDefault();
+
+    const buttonNode = event.target.closest('button');
+    if (!buttonNode) {
+      return;
+    }
+    if (buttonNode.classList.contains(explosionNavPrevClassName) && this.currentIndex > 0) {
+      this.currentIndex -= 1;
+    }
+    if (buttonNode.classList.contains(explosionNavNextClassName) && this.currentIndex < this.size - 1) {
+      this.currentIndex += 1;
+    }
+    this.switchChange();
   }
   activateGallery = (event) => {
     event.preventDefault();
