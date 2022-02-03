@@ -88,12 +88,26 @@ class ExplositionGallery {
     this.explosionTitleNode = this.modalContainerNode.querySelector(`.${explosionTitleClassName}`);
     this.explosionDescriptionNode = this.modalContainerNode.querySelector(`.${explosionDescriptionClassName}`);
     this.explosionNavsNode = this.modalContainerNode.querySelector(`.${explosionNavsClassName}`);
-    this.explosionSummaryContentNode = this.modalContainerNode.querySelector(`.${explosionSummaryContentClassName}`)
+    this.explosionSummaryContentNode = this.modalContainerNode.querySelector(`.${explosionSummaryContentClassName}`);
+    this.explosionCloseNode = this.modalContainerNode.querySelector(`.${explosionCloseClassName}`)
   }
 
   events() {
     this.containerNode.addEventListener('click', this.activateGallery);
     this.explosionNavsNode.addEventListener('click', this.switchImage);
+    this.explosionCloseNode.addEventListener('click', this.closeGallery);
+  }
+
+  closeGallery = () => {
+    this.setInitPositionsToImages();
+    this.explosionImageNodes.forEach((imageNode) => {
+      imageNode.style.opacity = 1;
+    });
+    this.explosionSummaryNode.style.width = '0';
+    this.explosionControlsNode.style.marginTop = '3000px';
+    fadeOut(this.modalContainerNode, () => {
+      this.modalContainerNode.classList.remove(explosionOpenedClassName);
+    })
   }
 
   switchImage = (event) => {
