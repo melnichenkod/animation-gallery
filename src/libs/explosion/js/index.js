@@ -98,12 +98,21 @@ class ExplositionGallery {
     this.containerNode.addEventListener('click', this.activateGallery);
     this.explosionNavsNode.addEventListener('click', this.switchImage);
     this.explosionCloseNode.addEventListener('click', this.closeGallery);
+    window.addEventListener('keyup', this.keyDown);
   }
   resize = () => {
     if(this.modalContainerNode.classList.contains(explosionOpenedClassName)) {
       this.setInitSizeToImage();
       this.setGalleryStyles();
     }
+  }
+
+  keyDown = (event) => {
+    if (this.modalContainerNode.classList.contains(explosionOpenedClassName)) {
+      if (event.key == 'Escape' || event.key === 'Esc' || event.keyCode === 27) {
+        this.closeGallery();
+      }
+    } 
   }
 
   closeGallery = () => {
