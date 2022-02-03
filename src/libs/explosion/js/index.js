@@ -93,9 +93,17 @@ class ExplositionGallery {
   }
 
   events() {
+    this.throttledResize = throttle(this.resize, 200);
+    window.addEventListener('resize', this.throttledResize);
     this.containerNode.addEventListener('click', this.activateGallery);
     this.explosionNavsNode.addEventListener('click', this.switchImage);
     this.explosionCloseNode.addEventListener('click', this.closeGallery);
+  }
+  resize = () => {
+    if(this.modalContainerNode.classList.contains(explosionOpenedClassName)) {
+      this.setInitSizeToImage();
+      this.setGalleryStyles();
+    }
   }
 
   closeGallery = () => {
